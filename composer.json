@@ -1,0 +1,13 @@
+{
+    "name": "nicat/redox_api_integration",
+    "autoload":{
+        "psr-4":{
+            "App\\":"app/",
+            "Utils\\":"utils/"
+        },
+        "files": ["app/helper.php"]
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.4"
+    }
+}
