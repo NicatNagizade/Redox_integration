@@ -20,8 +20,21 @@ class RedoxController
 
     /**
      *
+     * @param \Psr\Http\Message\ResponseInterface $response
      * @return StreamInterface
      */
+    private function redoxResponse(\Psr\Http\Message\ResponseInterface $response)
+    {
+        $contentType = $response->getHeaderLine('Content-Type');
+        header('Content-Type:' . $contentType);
+        http_response_code($response->getStatusCode());
+        return $response->getBody();
+    }
+
+   /**
+    *
+    * @return StreamInterface
+    */
     public function authenticate()
     {
         $response = Http::post(
@@ -37,10 +50,7 @@ class RedoxController
                 ]
             ]
         );
-        $contentType = $response->getHeaderLine('Content-Type');
-        header('Content-Type:' . $contentType);
-        http_response_code($response->getStatusCode());
-        return $response->getBody();
+        return $this->redoxResponse($response);
     }
 
     /**
@@ -59,10 +69,7 @@ class RedoxController
                 'http_errors' => false,
             ]
         );
-        $contentType = $response->getHeaderLine('Content-Type');
-        header('Content-Type:' . $contentType);
-        http_response_code($response->getStatusCode());
-        return $response->getBody();
+        return $this->redoxResponse($response);
     }
 
     /**
@@ -82,10 +89,7 @@ class RedoxController
                 'http_errors' => false,
             ]
         );
-        $contentType = $response->getHeaderLine('Content-Type');
-        header('Content-Type:' . $contentType);
-        http_response_code($response->getStatusCode());
-        return $response->getBody();
+        return $this->redoxResponse($response);
     }
 
     /**
@@ -105,14 +109,6 @@ class RedoxController
                 'http_errors' => false,
             ]
         );
-        // $resHeaders = $response->getHeaders();
-        // foreach ($resHeaders as $key => $value) {
-        //     $value = $value[0] ?? '';
-        //     header($key . ':' . $value);
-        // }
-        $contentType = $response->getHeaderLine('Content-Type');
-        header('Content-Type:' . $contentType);
-        http_response_code($response->getStatusCode());
-        return $response->getBody();
+        return $this->redoxResponse($response);
     }
 }
