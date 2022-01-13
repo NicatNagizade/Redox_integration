@@ -11,7 +11,6 @@ class Http
      * @param  array  $options
      * @return \Psr\Http\Message\ResponseInterface
      */
-
     public static function post(string $url, array $options = [])
     {
         $client = new \GuzzleHttp\Client();

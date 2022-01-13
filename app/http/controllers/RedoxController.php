@@ -44,10 +44,7 @@ class RedoxController
                     'apiKey' => request()->post('apiKey'),
                     'secret' => request()->post('secret')
                 ],
-                'http_errors' => false,
-                'headers' => [
-                    'Connection' => 'close'
-                ]
+                'http_errors' => false
             ]
         );
         return $this->redoxResponse($response);
