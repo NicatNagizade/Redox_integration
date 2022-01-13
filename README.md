@@ -47,6 +47,8 @@ Server will run on [http://localhost:8000]()
 
 For calling Redox services [http://localhost:8000/redox]()
 
+For example: if you want to login, you should call [http://localhost:8000/redox/auth/authenticate]()
+
 How to get started with Redox API ['https://developer.redoxengine.com']()
 
 

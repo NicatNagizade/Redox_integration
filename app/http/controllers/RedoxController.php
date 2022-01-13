@@ -8,8 +8,6 @@ class RedoxController
 {
     public $url = '';
     public $blobUrl = '';
-    // public $key = '';
-    // public $secret = '';
 
     /**
      * @return void
@@ -18,8 +16,6 @@ class RedoxController
     {
         $this->url = env('REDOX_APP_URL');
         $this->blobUrl = env('REDOX_BLOB_URL');
-        // $this->key = env('REDOX_APP_KEY');
-        // $this->secret = env('REDOX_SECRET');
     }
 
     /**

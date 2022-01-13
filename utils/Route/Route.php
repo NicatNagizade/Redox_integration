@@ -24,7 +24,6 @@ class Route
 
     /**
      * 
-     *
      * @param string $path
      * @param string $controller
      * @param string $method
@@ -32,36 +31,18 @@ class Route
      */
     public function post(string $path, string $controller, string $method)
     {
-        $path = startsWith($path, '/') ? $path : '/' . $path;
-        if ($path === $this->path) {
-            $response = (new $controller)->$method();
-            if (is_array($response)) {
-                echo json_encode($response);
-            } else {
-                echo $response;
+        if ($this->method === 'POST') {
+            $path = startsWith($path, '/') ? $path : '/' . $path;
+            if ($path === $this->path) {
+                $response = (new $controller)->$method();
+                if (is_array($response)) {
+                    echo json_encode($response);
+                } else {
+                    echo $response;
+                }
+                exit;
             }
-            exit;
         }
-        // $paths = explode('/', $path);
-        // $orgPaths = explode('/', $this->path);
-        // $parameters = [];
-        // if ($this->method === 'POST') {
-        //     $check = false;
-        //     for ($i = 0; $i < count($paths); $i++) {
-        //         $_path = $paths[$i];
-        //         $_orgPath = $orgPaths[$i] ?? null;
-        //         $check = $_path === $_orgPath;
-        //     }
-        //     if ($check) {
-        //         $response = (new $controller)->$method(...$parameters);
-        //         if (is_array($response)) {
-        //             echo json_encode($response);
-        //         } else {
-        //             echo $response;
-        //         }
-        //         exit;
-        //     }
-        // }
     }
 
     public function notFound()
