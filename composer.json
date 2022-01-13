@@ -8,6 +8,7 @@
         "files": ["app/helper.php"]
     },
     "require": {
+        "vlucas/phpdotenv": "^5.4",
         "guzzlehttp/guzzle": "^7.4"
     }
 }

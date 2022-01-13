@@ -15,7 +15,7 @@ class Request
     {
         $this->gets = $_GET;
         $rawData = json_decode(file_get_contents('php://input'), true);
-        if(!is_array($rawData)) {
+        if (!is_array($rawData)) {
             $rawData = [];
         }
         $this->posts = array_merge($_POST, $rawData);
@@ -24,6 +24,9 @@ class Request
         $this->requests = array_merge($this->gets, $this->posts, $this->files);
     }
 
+    /**
+     * @return Request
+     */
     public static function instance()
     {
         if (static::$model === null) {
@@ -32,10 +35,17 @@ class Request
         return static::$model;
     }
 
+    /**
+     *
+     * @param string $type
+     * @param string $key
+     * @param mixed $default
+     * @return array|string
+     */
     private function getParams(string $type, string $key = '', $default = null)
     {
         $params = $this->$type;
-        if($key === '') {
+        if ($key === '') {
             return $params;
         } else if (isset($params[$key])) {
             return $params[$key];
@@ -52,6 +62,10 @@ class Request
         return $this->getParams($method, $key, $default);
     }
 
+    /**
+     *
+     * @return array
+     */
     public function all()
     {
         return $this->getParams('requests');

@@ -4,10 +4,18 @@ namespace Utils\Http;
 
 class Http
 {
-    public function post(string $url)
+    /**
+     * For sending post request
+     *
+     * @param  string  $url
+     * @param  array  $options
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+
+    public static function post(string $url, array $options = [])
     {
-        // 'https://api.redoxengine.com/endpoint'
         $client = new \GuzzleHttp\Client();
-        $response = $client->request('POST', $url);
+        $response = $client->request('POST', $url, $options);
+        return $response;
     }
 }
