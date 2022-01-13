@@ -7,7 +7,7 @@ use Utils\Request\Request;
  *
  * @param string $key
  * @param mixed $default
- * @return @mixed
+ * @return mixed
  */
 function request(string $key = '', $default = null)
 {

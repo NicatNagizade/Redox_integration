@@ -45,6 +45,10 @@ class Route
         }
     }
 
+    /**
+     *
+     * @return void
+     */
     public function notFound()
     {
         http_response_code(404);
