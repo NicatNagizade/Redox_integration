@@ -44,7 +44,10 @@ composer install
 ```php -S localhost:8000 -t public```
 
 Server will run on [http://localhost:8000]()
+
 For calling Redox services [http://localhost:8000/redox]()
+
+How to get started with Redox API ['https://developer.redoxengine.com']()
 
 
 ## Contact
