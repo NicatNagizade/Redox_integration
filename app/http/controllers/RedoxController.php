@@ -37,10 +37,8 @@ class RedoxController
                 ]
             ]
         );
-        $statusCode = $response->getStatusCode();
-        if ($statusCode < 300) {
-            header('Content-type: application/json');
-        }
+        $contentType = $response->getHeaderLine('Content-Type');
+        header('Content-Type:' . $contentType);
         http_response_code($response->getStatusCode());
         return $response->getBody();
     }
@@ -61,10 +59,8 @@ class RedoxController
                 'http_errors' => false,
             ]
         );
-        $statusCode = $response->getStatusCode();
-        if ($statusCode < 300) {
-            header('Content-type: application/json');
-        }
+        $contentType = $response->getHeaderLine('Content-Type');
+        header('Content-Type:' . $contentType);
         http_response_code($response->getStatusCode());
         return $response->getBody();
     }
@@ -86,8 +82,9 @@ class RedoxController
                 'http_errors' => false,
             ]
         );
+        $contentType = $response->getHeaderLine('Content-Type');
+        header('Content-Type:' . $contentType);
         http_response_code($response->getStatusCode());
-        header('Content-type: application/json');
         return $response->getBody();
     }
 
