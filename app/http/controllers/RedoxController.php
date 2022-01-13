@@ -31,10 +31,10 @@ class RedoxController
         return $response->getBody();
     }
 
-   /**
-    *
-    * @return StreamInterface
-    */
+    /**
+     *
+     * @return StreamInterface
+     */
     public function authenticate()
     {
         $response = Http::post(
