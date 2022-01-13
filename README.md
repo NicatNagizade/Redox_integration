@@ -25,9 +25,17 @@ This repository was created for integrating the Redox API
 
 ```
 
-cd album-backend \
+cd redox_integration \
 
 && cp .env.example .env
+
+```
+
+**Installing packages**
+
+```
+
+composer install
 
 ```
 
