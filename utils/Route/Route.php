@@ -4,24 +4,6 @@ namespace Utils\Route;
 
 class Route
 {
-    public $path = '';
-    public $query = '';
-    public $method = 'GET';
-
-    public function __construct()
-    {
-        $url = parse_url($_SERVER['REQUEST_URI']);
-        if (isset($url['path'])) {
-            $this->path = $url['path'];
-        }
-        if (isset($url['query'])) {
-            $this->query = $url['query'];
-        }
-        if (in_array($_SERVER['REQUEST_METHOD'], ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'])) {
-            $this->method = $_SERVER['REQUEST_METHOD'];
-        }
-    }
-
     /**
      * 
      * @param string $path
@@ -31,9 +13,9 @@ class Route
      */
     public function post(string $path, string $controller, string $method)
     {
-        if ($this->method === 'POST') {
+        if (request()->getMethod() === 'POST') {
             $path = startsWith($path, '/') ? $path : '/' . $path;
-            if ($path === $this->path) {
+            if ($path === request()->getPath()) {
                 $response = (new $controller)->$method();
                 if (is_array($response)) {
                     echo json_encode($response);

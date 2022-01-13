@@ -4,12 +4,14 @@ namespace Utils\Request;
 
 class Request
 {
-    public static $model = null;
-    public $gets = [];
-    public $posts = [];
-    public $requests = [];
-    public $files = [];
-    public $headers = [];
+    protected static $model = null;
+    protected $gets = [];
+    protected $posts = [];
+    protected $requests = [];
+    protected $files = [];
+    protected $headers = [];
+    protected $method = '';
+    protected $path = '';
 
     private function __construct()
     {
@@ -22,6 +24,13 @@ class Request
         $this->files = $_FILES;
         $this->headers = getallheaders();
         $this->requests = array_merge($this->gets, $this->posts, $this->files);
+        $url = parse_url($_SERVER['REQUEST_URI']);
+        if (isset($url['path'])) {
+            $this->path = $url['path'];
+        }
+        if (in_array($_SERVER['REQUEST_METHOD'], ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'])) {
+            $this->method = $_SERVER['REQUEST_METHOD'];
+        }
     }
 
     /**
@@ -33,6 +42,24 @@ class Request
             static::$model = new static;
         }
         return static::$model;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 
     /**
@@ -57,8 +84,8 @@ class Request
     public function __call($name, $arguments)
     {
         $method = $name . 's';
-        $key = $arguments[0] ?? '';
-        $default = $arguments[1] ?? null;
+        $key = isset($arguments[0])  ? $arguments[0] : '';
+        $default = isset($arguments[1]) ? $arguments[1] : null;
         return $this->getParams($method, $key, $default);
     }
 
