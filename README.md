@@ -25,7 +25,7 @@ This repository was created for integrating the Redox API
 
 ```
 
-cd redox_integration \
+cd Redox_integration \
 
 && cp .env.example .env
 
